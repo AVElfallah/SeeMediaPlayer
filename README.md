@@ -2,7 +2,8 @@
 
 A new Flutter project.
 
-[![N|Solid](https://github.com/AVElfallah/SeeMediaPlayer/blob/master/assets/img/logo.png =64x64)](https://github.com/AVElfallah)
+<a href="url"><img src="[http://url.to/image.png](https://github.com/AVElfallah/SeeMediaPlayer/blob/master/assets/img/logo.png)" align="left" height="48" width="48" ></a>
+
 
 ## Getting Started
 
