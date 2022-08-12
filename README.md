@@ -1,4 +1,4 @@
-# See Media Player <a href="url"><img src="https://raw.githubusercontent.com/AVElfallah/SeeMediaPlayer/master/assets/img/logo.png" align="left" height="48" width="48" ></a>
+# See Media Player <a href="url"><img src="assets\img\logo.png" align="left" height="48" width="48" ></a>
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
 
