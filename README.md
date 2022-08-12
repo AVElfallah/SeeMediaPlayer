@@ -2,7 +2,7 @@
 
 A new Flutter project.
 
-
+[![N|Solid](https://github.com/AVElfallah/SeeMediaPlayer/blob/master/assets/img/logo.png)](https://github.com/AVElfallah)
 
 ## Getting Started
 
