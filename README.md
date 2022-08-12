@@ -2,7 +2,7 @@
 
 A new Flutter project.
 
-<a href="url"><img src="[http://url.to/image.png](https://github.com/AVElfallah/SeeMediaPlayer/blob/master/assets/img/logo.png)" align="left" height="48" width="48" ></a>
+<a href="url"><img src="[http://url.to/image.png](https://github.com/AVElfallah/SeeMediaPlayer/master/assets/img/logo.png)" align="left" height="48" width="48" ></a>
 
 
 ## Getting Started
