@@ -22,5 +22,5 @@
 
 - *1*
 
-<a href="url"><img src="screenshots\flutter_01.png" align="left" height="300" width="300" ></a>
+<a href="url"><img src="screenshots\flutter_01.png" align="left" height="500" width="300" ></a>
 
