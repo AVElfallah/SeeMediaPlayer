@@ -4,22 +4,23 @@
 
 **Is a small application to get and preview media (video|audio) from real device.**
 
-## **Packages and Technologies** :tw-1f4bb:
+## **Packages and Technologies** 💻
 - **Flutter Android Channel✨**
 - **Provider 👌**
 - **FontAwesomeIcons 🎶**
 - **Just Audio 😎**
 - **Video Player 😒**
 
-## Features :tw-2728:
+## Features 🪶
 
 - **Get all videos from android device.**
 - **Get all audios from android device.**
 - **Video Preview**
 - **Audio Preview**
 
-## Screenshots  :tw-1f4f7:
+## Screenshots  📸
 
 - *1*
-<a href="url"><img src="assets\img\logo.png" align="left" height="300" width="300" ></a>
+
+<a href="url"><img src="screenshots\flutter_01.png" align="left" height="300" width="300" ></a>
 
