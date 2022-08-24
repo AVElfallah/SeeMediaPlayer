@@ -21,8 +21,10 @@
 ## Screenshots  📸
 
 - *load videos from device*
-<div style="text-align: center">
-<a href="url"><img src="screenshots\flutter_01.png" align="center" height="500" width="300" ></a>
+<div align='center'>
+   <a href="url"><img src="screenshots\flutter_01.png" align="center" height="500" width="300" ></a>
 </div>
+<a href="url"><img src="screenshots\flutter_01.png" align="center" height="500" width="300" ></a>
+
 - 
 
