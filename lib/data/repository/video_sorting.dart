@@ -1,6 +1,4 @@
-import 'package:flutter/foundation.dart';
 import 'package:see_media_player/data/models/information.dart';
-import 'dart:collection' as collect;
 
 class Sorting<T> {
   Sorting() : assert(T is! List<MediaInformation>);

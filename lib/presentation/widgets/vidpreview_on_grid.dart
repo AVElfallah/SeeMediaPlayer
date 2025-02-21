@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:see_media_player/business_logic/providers/logic/video_preview_provider.dart';
@@ -15,12 +17,13 @@ class _VidPreviewOnGridState extends State<VidPreviewOnGrid> {
   @override
   void initState() {
     super.initState();
-    Provider.of<VideoPreviewProvider>(context, listen: false).setImagePyPath();
+       WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<VideoPreviewProvider>(context, listen: false).setImagePyPath();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    var image = Provider.of<VideoPreviewProvider>(context).image;
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(
@@ -41,8 +44,8 @@ class _VidPreviewOnGridState extends State<VidPreviewOnGrid> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(24),
                 image: DecorationImage(
-                  image: image!.isNotEmpty
-                      ? MemoryImage(image)
+                  image: context.watch<VideoPreviewProvider>().isImageLoaded?
+                       FileImage(File(context.watch<VideoPreviewProvider>().thumbnailImagePath!))
                       : Image.asset('assets/img/erorr.png').image,
                   fit: BoxFit.cover,
                 ),

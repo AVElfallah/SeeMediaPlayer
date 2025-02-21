@@ -16,7 +16,7 @@ class GetVideoThumbnail {
       return results!;
     } catch (e) {
       debugPrint(e.toString());
-      return [] as Uint8List;
+      return Uint8List(0);
     }
   }
 }

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:see_media_player/business_logic/providers/logic/all_audios_provider.dart';
 import 'package:see_media_player/business_logic/providers/logic/audio_displayer_provider.dart';
 import 'package:see_media_player/business_logic/providers/logic/video_displayer_provider.dart';
+import 'package:see_media_player/data/repository/storage_service.dart';
 import 'package:see_media_player/presentation/pages/audio_main_page.dart';
 import 'package:see_media_player/presentation/pages/video_player.dart';
 
@@ -16,6 +17,9 @@ import '../../presentation/pages/error_page.dart';
 void main() {
   DartPluginRegistrant.ensureInitialized();
   WidgetsFlutterBinding.ensureInitialized();
+
+  LocalStorageService.instance.setDataBase();
+  
   runApp(const MyApp());
 }
 

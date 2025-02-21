@@ -2,7 +2,6 @@ import 'dart:typed_data';
 
 import 'package:flutter/cupertino.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:see_media_player/business_logic/providers/models/all_videos_provider.dart';
 import 'package:see_media_player/data/models/video_information.dart';
 import 'package:see_media_player/data/repository/get_video_thumbnail.dart';
 import 'package:see_media_player/data/repository/video_sorting.dart';
@@ -10,16 +9,16 @@ import 'package:see_media_player/data/repository/video_sorting.dart';
 import '../../../data/repository/get_videos.dart';
 
 class AllVideosProvider extends ChangeNotifier
-    implements AllVideosProviderModel {
-  @override
+     {
   Future<bool> getPermission() async {
+    debugPrint('getPermission');
     await Permission.storage.request();
     var permission = await Permission.storage.isGranted;
     return permission;
   }
 
-  @override
   Future<Uint8List> getThumbnail(String videoPath) async {
+    debugPrint('getThumbnail');
     var prim = await getPermission();
     if (prim) {
       var thumbnail = await GetVideoThumbnail().getThumbnail(videoPath);
@@ -30,9 +29,8 @@ class AllVideosProvider extends ChangeNotifier
     }
   }
 
-  @override
   Future<void> getVideosFromDevice() async {
-    //videos!.clear();
+    debugPrint('getVideosFromDevice');
     var prim = await getPermission();
     if (prim) {
       var setter = await GetAllVideos().getAllVideos();
@@ -65,31 +63,27 @@ class AllVideosProvider extends ChangeNotifier
     }
   }
 
-  @override
-  List<VideoInformation>? videos = [];
+  
+  List<VideoInformation> videos = [];
 
-  @override
-  bool? listOrGrid = true;
+  bool isAList = true;
 
-  @override
-  void changeListOrGrid() {
-    listOrGrid = !listOrGrid!;
+  void changeListState() {
+    isAList = !isAList;
     notifyListeners();
   }
 
-  @override
   void sortingVideoList(SortingType? type, {SortingOrder? order}) {
     listSortingOrder = order ?? listSortingOrder;
     listSortingType = type ?? listSortingType;
-    if (videos!.isEmpty) return;
+    if (videos.isEmpty) return;
     videos = Sorting<VideoInformation>()
-        .sort(videos!, type: type!, order: order ?? SortingOrder.asc);
+        .sort(videos, type: type!, order: order ?? SortingOrder.asc);
     notifyListeners();
   }
 
-  @override
-  SortingOrder? listSortingOrder = SortingOrder.dsc;
+  SortingOrder listSortingOrder = SortingOrder.dsc;
 
-  @override
-  SortingType? listSortingType = SortingType.name;
+  
+  SortingType listSortingType = SortingType.name;
 }

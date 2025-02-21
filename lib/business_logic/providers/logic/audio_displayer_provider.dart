@@ -1,57 +1,75 @@
 import 'package:just_audio/just_audio.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:see_media_player/business_logic/providers/models/audio_displayer_provider.dart';
 
 class AudioDisplayerProvider extends ChangeNotifier
-    implements AudioDisplayerProviderModel {
-  @override
-  void dispose() {
-    super.dispose();
-    controller?.dispose();
+   {
+  
+  
+  AudioDisplayerProvider() {
+    debugPrint('Audio Displayer Provider Created');
   }
 
   @override
+  void dispose() {
+    debugPrint('Audio Displayer Provider Disposed');
+    _audioPlayerController?.dispose();
+    super.dispose();
+   
+  }
+
   Future<void> initialControllers(String path) async {
-    if (controller == null) {
-      controller ??= AudioPlayer()..setFilePath(path);
-      controller!.load().then((_) {
+    debugPrint('Audio Displayer Provider Initialized');
+   
+     _audioPlayerController??= AudioPlayer()..setFilePath(path);
+      _audioPlayerController!.load().then((_) {
         isInitialized = true;
         notifyListeners();
       });
-    }
+    
+   
   }
 
   seekToSecond(double second) {
-    controller!.seek(Duration(seconds: second.toInt()));
+    _audioPlayerController!.seek(Duration(seconds: second.toInt()));
 
-    curntSecond = controller!.position.inSeconds.toDouble();
+    currentSecond = _audioPlayerController!.position.inSeconds.toDouble();
 
     notifyListeners();
   }
 
-  startAudio() {
-    controller!.playing ? controller!.pause() : controller?.play();
+  playPauseAudio() {
+    _audioPlayerController!.playing ? _audioPlayerController!.pause() : _audioPlayerController?.play();
+    isPlaying = _audioPlayerController!.playing;
     notifyListeners();
   }
 
   seekForward() {
-    if (controller!.position.inSeconds > 5) {
-      controller!.seek(Duration(seconds: controller!.position.inSeconds + 5));
+    if (_audioPlayerController!.position.inSeconds > 5) {
+      _audioPlayerController!.seek(Duration(seconds: _audioPlayerController!.position.inSeconds + 5));
       notifyListeners();
     }
   }
 
   seekBackward() {
-    if (controller!.position.inSeconds > 5) {
-      controller!.seek(Duration(seconds: controller!.position.inSeconds - 5));
+    if (_audioPlayerController!.position.inSeconds > 5) {
+      _audioPlayerController!.seek(Duration(seconds: _audioPlayerController!.position.inSeconds - 5));
       notifyListeners();
     }
   }
 
-  double? curntSecond = 0;
-  bool? isPlayed = false;
-  bool? isInitialized = false;
+  void setLoopMode(LoopMode loopMode) {
+    _audioPlayerController?.setLoopMode(loopMode);
+  }
 
-  @override
-  AudioPlayer? controller;
+  double currentSecond = 0;
+  bool isPlaying = false;
+  bool isInitialized = false;
+
+  get positionStream => _audioPlayerController?.positionStream??const Stream.empty();
+
+double  get durationInSeconds =>( _audioPlayerController?.duration?.inSeconds??0).toDouble();
+
+  AudioPlayer? _audioPlayerController;
+
+ // get controller => _audioPlayerController??= AudioPlayer();
 }

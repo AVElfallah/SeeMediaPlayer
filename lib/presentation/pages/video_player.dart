@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:video_player/video_player.dart';
 import 'package:better_player/better_player.dart';
 
 import '../../business_logic/providers/logic/video_displayer_provider.dart';
@@ -15,9 +13,16 @@ class VideoDisplayerPage extends StatefulWidget {
 }
 
 class _VideoDisplayerState extends State<VideoDisplayerPage> {
+ late final VideoDisplayerProvider prov;
+ late final VideoInformation args;
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+       args = ModalRoute.of(context)!.settings.arguments as VideoInformation;
+       prov = context.read<VideoDisplayerProvider>();
+      prov.initialize(args.path!);
+    });
   }
 
   @override
@@ -27,24 +32,25 @@ class _VideoDisplayerState extends State<VideoDisplayerPage> {
 
   @override
   Widget build(BuildContext context) {
-    final args = ModalRoute.of(context)!.settings.arguments as VideoInformation;
-    final provDo = context.read<VideoDisplayerProvider>();
-    final provListen = context.watch<VideoDisplayerProvider>();
-    provDo.initialize(args.path!);
+
 
     return Scaffold(
       backgroundColor: Colors.black,
-      body: provListen.isIntialized
+      body: Consumer<VideoDisplayerProvider>(
+            builder: (context, provListen, child) {
+              return provListen.isLoaded
           ? Center(
-              child: BetterPlayer(
-                controller: provListen.videoController,
-              ),
-            )
-          : const Center(
+                  child: BetterPlayer(
+                    controller: provListen.videoController,
+                  ),
+                ): const Center(
               child: CircularProgressIndicator(
                 color: Colors.amber,
               ),
-            ),
+            );
+            }
+          )
+          ,
     );
   }
 }
